@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "./navbar";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 const UserRegister = () => {
   const url = "http://localhost:4000/users/register";
@@ -50,7 +50,6 @@ const UserRegister = () => {
       console.log(formData);
       setResponseMessage(response.data.message);
       navigate("/");
-
     } catch (error) {
       console.error("Error sending form data:", error);
       setResponseMessage("Error sending form data");
@@ -152,11 +151,21 @@ const UserRegister = () => {
               </a>
             </label>
           </div>
+          <div className="mt-2 flex flex-row"></div>
           <button
             type="submit"
             class="w-full text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-black "
           >
             Continue
+          </button>
+          <div />
+          <button
+            type="button"
+            className="w-full mt-16 text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center dark:bg-green-700"
+          >
+            <Link to="/captain-signup" className="text-white">
+              Sign-up as Captain
+            </Link>
           </button>
         </form>
       </div>

@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./navbar";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
 const UserLogin = () => {
-  const url = "http://localhost:4000/users/login";
   const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    // Check if the token exists in localStorage
+    if (localStorage.getItem("userToken")) {
+      navigate("/profile"); // Navigate to the profile page
+    }
+  }, [navigate]);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -24,7 +30,6 @@ const UserLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       // Send form data to backend
       const response = await axios.post(
@@ -32,8 +37,9 @@ const UserLogin = () => {
         formData
       );
       console.log(formData);
+      localStorage.setItem("userToken", response.data.token);
       setResponseMessage(response.data.message);
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       console.error("Error sending form data:", error);
       setResponseMessage("Error sending form data");

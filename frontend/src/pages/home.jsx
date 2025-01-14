@@ -3,8 +3,8 @@ import NavBar from "./navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzU1OTZlY2Q4NjQwZDJmMjA1YjFlMTMiLCJpYXQiOjE3MzM2NjUyMjUsImV4cCI6MTczMzc1MTYyNX0.KO0_rTGV4CuBY4qF-gn5TA_-AJ7PF7w92Hmdd0UuQ_A";
+const token =localStorage.getItem('token')
+
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate
 
